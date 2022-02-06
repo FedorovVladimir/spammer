@@ -1,3 +1,3 @@
-module spamer
+module spammer
 
 go 1.17
