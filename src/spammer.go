@@ -41,6 +41,8 @@ func Run() {
 
 	rand.Seed(time.Now().UTC().UnixNano())
 
+	log.Println("app run")
+
 	examples.Run(func(ctx context.Context, _ *zap.Logger) error {
 		flow := auth.NewFlow(termAuth{phone: phoneNumber}, auth.SendCodeOptions{})
 
@@ -115,11 +117,12 @@ var mID = 0
 func sendMessage(ctx context.Context, api *tg.Client, message *tg.Message, chatIDs []int64) {
 	if message.ID != mID {
 		for _, chatID := range chatIDs {
-			_, _ = api.MessagesSendMessage(ctx, &tg.MessagesSendMessageRequest{
-				Peer:     &tg.InputPeerChat{ChatID: chatID},
-				Message:  message.Message,
-				RandomID: rand.Int63(),
-			})
+			//_, _ = api.MessagesSendMessage(ctx, &tg.MessagesSendMessageRequest{
+			//	Peer:     &tg.InputPeerChat{ChatID: chatID},
+			//	Message:  message.Message,
+			//	RandomID: rand.Int63(),
+			//})
+			fmt.Println(chatID, message.Message)
 		}
 		mID = message.ID
 	}
