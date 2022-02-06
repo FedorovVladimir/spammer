@@ -1,7 +1,7 @@
 package main
 
-import "fmt"
+import "spammer/src"
 
 func main() {
-	fmt.Println("Hello, World!")
+	src.Run()
 }
