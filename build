@@ -3,4 +3,4 @@ GOOS=linux GOARCH=amd64 go build -o bin/spammer_linux_amd64 cmd/spammer/main.go
 GOOS=darwin GOARCH=amd64 go build -o bin/spammer_osx_amd64 cmd/spammer/main.go
 GOOS=darwin GOARCH=arm64 go build -o bin/spammer_osx_arm64 cmd/spammer/main.go
 
-GOOS=windows GOARCH=amd64 go build -o bin/spammer_windows_amd64 cmd/spammer/main.go
+GOOS=windows GOARCH=amd64 go build -o bin/spammer_windows_amd64.exe cmd/spammer/main.go

@@ -117,12 +117,11 @@ var mID = 0
 func sendMessage(ctx context.Context, api *tg.Client, message *tg.Message, chatIDs []int64) {
 	if message.ID != mID {
 		for _, chatID := range chatIDs {
-			//_, _ = api.MessagesSendMessage(ctx, &tg.MessagesSendMessageRequest{
-			//	Peer:     &tg.InputPeerChat{ChatID: chatID},
-			//	Message:  message.Message,
-			//	RandomID: rand.Int63(),
-			//})
-			fmt.Println(chatID, message.Message)
+			_, _ = api.MessagesSendMessage(ctx, &tg.MessagesSendMessageRequest{
+				Peer:     &tg.InputPeerChat{ChatID: chatID},
+				Message:  message.Message,
+				RandomID: rand.Int63(),
+			})
 		}
 		mID = message.ID
 	}
@@ -140,11 +139,11 @@ func contains(name string, names []string) bool {
 // noSignUp can be embedded to prevent signing up.
 type noSignUp struct{}
 
-func (c noSignUp) SignUp(ctx context.Context) (auth.UserInfo, error) {
+func (c noSignUp) SignUp(_ context.Context) (auth.UserInfo, error) {
 	return auth.UserInfo{}, errors.New("not implemented")
 }
 
-func (c noSignUp) AcceptTermsOfService(ctx context.Context, tos tg.HelpTermsOfService) error {
+func (c noSignUp) AcceptTermsOfService(_ context.Context, tos tg.HelpTermsOfService) error {
 	return &auth.SignUpRequired{TermsOfService: tos}
 }
 
